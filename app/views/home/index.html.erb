@@ -1,46 +1,32 @@
-<h1>Welcome to Cosmos101</h1>
-
 <div class="container">
-  <div class="media">
-    <div class="media-left">
-      <a href="#"><img class="d-flex mr-3" src="http://res.cloudinary.com/demo/image/upload/w_100,h_100,c_thumb,g_face,r_20,d_avatar.png/non_existing_id.png" alt="Generic placeholder image"></a>
-    </div>
-    <div class="media-body">
-      <h5 class="mt-0">John Doe asked: </h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-      odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-      fringilla. Donec lacinia congue felis in faucibus.
-      <div>
-        <a href="/questions/12" class="btn btn-success btn-xs">View Answers</a>
-      </div>
-    </div>
-  </div>
-  <div class="media">
-    <div class="media-left">
-      <a href="#"><img class="d-flex mr-3" src="http://res.cloudinary.com/demo/image/upload/w_100,h_100,c_thumb,g_face,r_20,d_avatar.png/non_existing_id.png" alt="Generic placeholder image"></a>
-    </div>
-    <div class="media-body">
-      <h5 class="mt-0">John Doe asked: </h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-      odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-      fringilla. Donec lacinia congue felis in faucibus.
-      <div>
-        <a href="/questions/12" class="btn btn-success btn-xs">View Answers</a>
-      </div>
-    </div>
-  </div>
-  <div class="media">
-    <div class="media-left">
-      <a href="#"><img class="d-flex mr-3" src="http://res.cloudinary.com/demo/image/upload/w_100,h_100,c_thumb,g_face,r_20,d_avatar.png/non_existing_id.png" alt="Generic placeholder image"></a>
-    </div>
-    <div class="media-body">
-      <h5 class="mt-0">John Doe asked: </h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-      odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-      fringilla. Donec lacinia congue felis in faucibus.
-      <div>
-        <a href="/questions/12" class="btn btn-success btn-xs">View Answers</a>
-      </div>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h1>Welcome to Cosmos101</h1>
+      <% @questions.each do |q| %>
+        <div class="media">
+          <div class="media-left">
+            <a href="#"><img class="d-flex mr-3" src=<%= q.gravatar %> alt="Generic placeholder image"></a>
+          </div>
+          <div class="media-body">
+            <h4 class="mt-0">
+              <%= q.name %> asked:
+            </h4>
+
+            <%= q.body %>
+            &emsp; <i><%= time_ago_in_words q.created_at %> ago </i>
+              <div>
+                <a href="<%= question_path(q) %>" class="btn btn-success btn-xs">View Answers</a>
+              </div>
+          </div>
+        </div>
+        <% end %>
+
+        <% if @questions.empty? %>
+          <hr>
+          <div class="alert alert-info">
+            Nothing here yet. Want to be the first to ask?
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

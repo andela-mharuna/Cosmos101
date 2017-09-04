@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="lead well">
+    <div class="media">
+      <div class="media-left">
+        <a href="#"><img class="d-flex mr-3" src="<%= @question.gravatar %>" alt="Generic placeholder image"></a>
+      </div>
+      <div class="media-body">
+        <h5 class="mt-0"><%= @question.name %> asked: </h5>
+        <%= @question.body %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <% @question.answers.each do |a| %>
+      <div class="media">
+        <div class="media-left">
+          <a href="#"><img class="d-flex mr-3" src="<%= a.gravatar %>" alt="Generic placeholder image"></a>
+        </div>
+        <div class="media-body">
+          <h4 class="mt-0"><%= a.name %> answered: </h4>
+          <b><%= a.body %></b>
+          <p><i><%= time_ago_in_words a.created_at %> ago</i></p>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @question.answers.empty? %>
+        <div class="alert alert-info">
+          No answers for this question yet
+        </div>
+      <% end %>
+      <hr>
+      <%= render 'home/new_answer_form' %>
+    </div>
+  </div>
+</div>
