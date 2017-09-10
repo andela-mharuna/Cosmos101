@@ -3,7 +3,7 @@
     <div class="col-sm-8 col-sm-offset-2">
       <h1>Welcome to Cosmos101</h1>
       <% @questions.each do |q| %>
-        <div class="media">
+        <div class="media media-card">
           <div class="media-left">
             <a href="#"><img class="d-flex mr-3" src=<%= q.gravatar %> alt="Generic placeholder image"></a>
           </div>
@@ -12,7 +12,7 @@
               <%= q.name %> asked:
             </h4>
 
-            <%= q.body %>
+            <%= truncate q.body, length: 200 %>
             &emsp; <i><%= time_ago_in_words q.created_at %> ago </i>
               <div>
                 <a href="<%= question_path(q) %>" class="btn btn-success btn-xs">View Answers</a>
