@@ -1,0 +1,34 @@
+<div class="modal fade" id="askQuestion">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ask a Question</h5>
+        <div class="modal-body">
+          <%= form_for :question, url: '/questions' do %>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Name</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" name="question[name]" placeholder="John Doe"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" name="question[email]" value="<%= current_user_email %>"
+                placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Answer</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="question[body]" placeholder="What would you like to know?"
+                required></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <button type="submit" class="btn btn-primary pull-right">Submit Question</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

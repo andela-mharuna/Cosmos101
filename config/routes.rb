@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+ resources :users
  resources :answers
  resources :questions
   # get 'home/index'
@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/about' => 'home#about'
+
+
 
   # get '/questions/:id' => 'home#question'
 
