@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   get '/about' => 'home#about'
 
-
+  get '/signup' => 'users#new'
+  # post '/signup' => 'users#create'
 
   # get '/questions/:id' => 'home#question'
 
