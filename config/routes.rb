@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ get 'sessions/new'
+
  resources :users
  resources :answers
  resources :questions
@@ -9,6 +11,12 @@ Rails.application.routes.draw do
   get '/about' => 'home#about'
 
   get '/signup' => 'users#new'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+
+  delete '/logout' => 'sessions#destroy'
+
   # post '/signup' => 'users#create'
 
   # get '/questions/:id' => 'home#question'
