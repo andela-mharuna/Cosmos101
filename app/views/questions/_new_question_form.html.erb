@@ -4,27 +4,23 @@
       <div class="modal-header">
         <h5 class="modal-title">Ask a Question</h5>
         <div class="modal-body">
-          <%= form_for :question, url: '/questions' do %>
+          <%= form_for :question, url: '/questions' do |f|%>
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>">
+              <%= message %>
+            </div>
+          <% end %>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Name</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" name="question[name]" placeholder="John Doe"
-                required>
+              <%= f.text_field :body, class: 'form-control', placeholder: 'Enter question here' %>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Email</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" name="question[email]" value="<%= current_user.email %>"
-                placeholder="name@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Answer</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="question[body]" placeholder="What would you like to know?"
-                required></textarea>
+              <%= f.hidden_field :user_id, :value => session[:user_id] %>
             </div>
         </div>
         <div class="modal-footer">
           <div>
-            <button type="submit" class="btn btn-primary pull-right">Submit Question</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <%= f.submit "Ask a Question", class: "btn btn-primary pull-right" %>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <div>
             </div>
             <% end %>

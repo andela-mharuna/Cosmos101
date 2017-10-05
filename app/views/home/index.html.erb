@@ -4,20 +4,17 @@
       <h1>Welcome to Cosmos101</h1>
       <% @questions.each do |q| %>
         <div class="media media-card">
-          <div class="media-left">
-            <a href="#"><img class="d-flex mr-3" src=<%= q.gravatar %> alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-            <h4 class="mt-0">
-              <%= q.name %> asked:
-            </h4>
-
-            <%= truncate q.body, length: 200 %>
-            &emsp; <i><%= time_ago_in_words q.created_at %> ago </i>
-              <div>
-                <a href="<%= question_path(q) %>" class="btn btn-success btn-xs">View Answers</a>
-              </div>
-          </div>
+            <div class="media-left">
+              <a href="#"><img class="d-flex mr-3" src=<%= q.user.gravatar %> alt="Generic placeholder image"></a>
+            </div>
+            <div class="media-body">
+              <h4 class="mt-0"><%= q.user.name %> asked:</h4>
+              <b><%= truncate q.body, length: 200 %></b>
+              <p><i><%= time_ago_in_words q.created_at %> ago</i></p>
+            </div>
+            <div>
+              <a href="<%= question_path(q) %>" class="btn btn-success btn-xs">View Answers</a>
+            </div>
         </div>
         <% end %>
 
